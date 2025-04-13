@@ -8,5 +8,13 @@
 
 	const { operatorSet }: Props = $props();
 
-	const { name, date, operators } = operatorSet;
+	const { id, name, date, operators } = operatorSet;
 </script>
+
+<a href={`/settings/custom-sets/${id}`}>
+	<div class="rounded-md px-4 py-2 shadow-md">
+		<h2>{name}</h2>
+		<h3>contains {operators.length} operators</h3>
+		<span>{date.toLocaleDateString()}</span>
+	</div>
+</a>

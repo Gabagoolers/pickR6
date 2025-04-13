@@ -13,7 +13,7 @@ export interface OperatorSet {
 }
 
 export const appStore = persisted<PickR6Store>('pickr6', {
-	ownedOperators: [],
+	ownedOperators: ['clash', 'ash', 'castle'],
 	sets: [
 		{
 			id: 'asd',

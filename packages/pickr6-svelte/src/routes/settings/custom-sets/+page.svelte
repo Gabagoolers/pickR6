@@ -9,8 +9,10 @@
 	<title>Operator sets</title>
 </svelte:head>
 
-<section class="grid gap-2">
-	{#each sets as set}
+<h1>Custom sets</h1>
+
+<section class="grid gap-4">
+	{#each sets ?? [] as set}
 		<OperatorSetCard operatorSet={set} />
 	{:else}
 		<span>You have no sets.</span>
