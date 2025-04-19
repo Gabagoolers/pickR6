@@ -11,5 +11,5 @@
 <section>
 	<a href="/settings/owned-operators">Owned Operators</a>
 	<Separator orientation="vertical" />
-	<a href="/settings/custom-sets">Custom Sets</a>
+	<a href="/custom-sets">Custom Sets</a>
 </section>

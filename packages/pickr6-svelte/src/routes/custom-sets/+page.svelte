@@ -1,6 +1,6 @@
 <script lang="ts">
 	import OperatorSetCard from '$lib/components/OperatorSetCard.svelte';
-	import { appStore } from '$lib/stores/persisted';
+	import { appStore } from '$lib/stores/persisted.svelte';
 
 	const sets = $derived($appStore.sets);
 </script>

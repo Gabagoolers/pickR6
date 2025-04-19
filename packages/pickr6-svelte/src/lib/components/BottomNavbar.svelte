@@ -4,7 +4,7 @@
 	const routes = [
 		{
 			label: 'Sets',
-			href: '/sets'
+			href: '/custom-sets'
 		},
 		{
 			label: 'Spin',
@@ -17,7 +17,6 @@
 	] as Array<{ href: string; label: string }>;
 
 	const curr = $derived(page.url.pathname);
-	console.log(curr);
 </script>
 
 <nav class="bg-background grid grid-cols-3">
