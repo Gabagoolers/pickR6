@@ -89,7 +89,11 @@
 				</figure>
 				<h2 class="text-xl">{operator.name}</h2>
 			</div>
-			<Checkbox class="mr-4" checked={operator.isOwned} />
+			<Checkbox
+				class="pointer-events-none mr-4 select-none"
+				onclick={() => toggleOperatorOwned(operator.id)}
+				checked={operator.isOwned}
+			/>
 		</div>
 	</button>
 {/snippet}

@@ -9,7 +9,7 @@ export interface PickR6Store {
 export interface OperatorSet {
 	id: string;
 	name: string;
-	date: Date;
+	date: Date | string;
 	operators: string[];
 }
 
@@ -28,17 +28,19 @@ export const appStore = persisted<PickR6Store>('pickr6_deprecated', {
 export class LocalStore<T> {
 	#value = $state<T>() as T;
 	#key = '';
+	#storage: Storage;
 
-	constructor(key: string, value: T) {
+	constructor(key: string, value: T, storage: Storage) {
 		this.#key = key;
 		this.#value = value;
+		this.#storage = storage;
 
 		if (browser) {
-			const item = localStorage.getItem(key);
+			const item = this.#storage.getItem(key);
 			if (item) {
 				this.#value = this.deserialize(item);
 			} else {
-				localStorage.setItem(key, this.serialize(this.#value));
+				this.#storage.setItem(key, this.serialize(this.#value));
 			}
 		}
 	}
@@ -51,7 +53,7 @@ export class LocalStore<T> {
 		console.debug(newValue);
 		this.#value = newValue;
 		if (browser) {
-			localStorage.setItem(this.#key, this.serialize(this.#value));
+			this.#storage.setItem(this.#key, this.serialize(this.#value));
 		}
 	}
 
@@ -68,18 +70,23 @@ export class LocalStore<T> {
 	}
 }
 
-export function localStore<T>(key: string, value: T) {
-	return new LocalStore(key, value);
+export function localStore<T>(key: string, value: T, storage: Storage = localStorage) {
+	return new LocalStore(key, value, storage);
 }
 
 export const pickr6Store = localStore<PickR6Store>('pickr6', {
-	ownedOperators: ['clash'],
-	sets: [
-		{
-			id: 'asd',
-			name: 'Test set',
-			date: new Date(),
-			operators: ['tachanka']
-		}
-	]
+	ownedOperators: [],
+	sets: []
 });
+
+interface SpinnedStore {
+	spinnedOperatorId: string | null;
+}
+
+export const spinnedStore = localStore<SpinnedStore>(
+	'pickr6_spinned',
+	{
+		spinnedOperatorId: null
+	},
+	sessionStorage
+);

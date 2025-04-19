@@ -1,5 +1,4 @@
-import { appStore } from '$lib/stores/persisted.svelte';
-import { get } from 'svelte/store';
+import { pickr6Store } from '$lib/stores/persisted.svelte';
 import type { PageLoad } from './$types';
 import { error } from '@sveltejs/kit';
 import r6operators from 'r6operators';
@@ -13,7 +12,7 @@ export const load: PageLoad = async ({ params }) => {
 		error(400, 'Custom set parameter is required');
 	}
 
-	const selectedSet = get(appStore).sets.find((set) => set.id === customSet);
+	const selectedSet = pickr6Store.value.sets.find((set) => set.id === customSet);
 
 	if (!selectedSet) {
 		error(404, `Custom set "${customSet}" not found`);
