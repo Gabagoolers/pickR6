@@ -5,7 +5,7 @@
 	let { children } = $props();
 </script>
 
-<div class="flex min-h-svh flex-col justify-between">
+<div class="flex min-h-dvh flex-col justify-between">
 	<main class="container mx-auto flex h-full max-w-screen-sm flex-grow flex-col px-4 py-2">
 		{@render children()}
 	</main>
