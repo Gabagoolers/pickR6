@@ -1,7 +1,7 @@
 {
 	"name": "pickr6-svelte",
 	"private": true,
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
@@ -18,6 +18,7 @@
 		"@eslint/js": "^9.18.0",
 		"@lucide/svelte": "^0.501.0",
 		"@sveltejs/adapter-auto": "^4.0.0",
+		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"autoprefixer": "^10.4.20",
@@ -26,13 +27,16 @@
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-svelte": "^2.46.1",
+		"formsnap": "^2.0.1",
 		"globals": "^15.14.0",
 		"lucide-svelte": "^0.501.0",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.10",
+		"rollup-plugin-visualizer": "^5.14.0",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
+		"sveltekit-superforms": "^2.24.1",
 		"tailwind-merge": "^3.2.0",
 		"tailwind-variants": "^1.0.0",
 		"tailwindcss": "^3.4.17",
@@ -40,7 +44,8 @@
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.20.0",
 		"vaul-svelte": "^1.0.0-next.7",
-		"vite": "^6.0.0"
+		"vite": "^6.0.0",
+		"zod": "^3.24.3"
 	},
 	"dependencies": {
 		"mode-watcher": "^0.5.1",

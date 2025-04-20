@@ -1,13 +1,11 @@
 <script lang="ts">
-	import type { Operator } from 'r6operators';
+	import type { ReducedSanitizedOperator } from '$lib/utils/operators';
 
 	interface Props {
-		operator: Operator;
+		operator: ReducedSanitizedOperator;
 	}
 
 	const { operator }: Props = $props();
-
-	console.log(operator.svg);
 </script>
 
 <div>

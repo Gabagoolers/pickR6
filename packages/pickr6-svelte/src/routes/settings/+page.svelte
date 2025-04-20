@@ -1,16 +1,14 @@
 <script lang="ts">
-	import type { Icon } from '@lucide/svelte/icons';
 	import Users from '@lucide/svelte/icons/users';
 	import BookUser from '@lucide/svelte/icons/book-user';
-	import * as Card from '$lib/components/ui/card';
+	import SettingsCard from '$lib/components/feautres/settings/SettingsCard.svelte';
+	import type { ComponentProps } from 'svelte';
 
-	type SettingsCardProps = {
-		title: string;
-		href: string;
-		icon: typeof Icon;
-	};
+	import FactoryReset from '$lib/components/feautres/settings/FactoryReset.svelte';
+	import { ArrowLeft } from '@lucide/svelte';
+	import { Button } from '$lib/components/ui/button';
 
-	const settingsCards: SettingsCardProps[] = [
+	const settingsCards: ComponentProps<typeof SettingsCard>[] = [
 		{
 			title: 'Owned Operators',
 			href: '/settings/owned-operators',
@@ -28,25 +26,18 @@
 	<title>Settings</title>
 </svelte:head>
 
-{#snippet settingsCard(s: SettingsCardProps)}
-	{@const Icon = s.icon}
-
-	<a href={s.href}>
-		<Card.Root>
-			<Card.Header>
-				<Card.Title>{s.title}</Card.Title>
-			</Card.Header>
-			<Card.Content>
-				<Icon class="h-6 w-6" />
-			</Card.Content>
-		</Card.Root>
-	</a>
-{/snippet}
+<header class="flex flex-row justify-between">
+	<Button class="pl-0" variant="ghost" href="/">
+		<ArrowLeft />
+		Spin</Button
+	>
+</header>
 
 <h1>Settings</h1>
 
 <section class="grid grid-cols-2 gap-4">
 	{#each settingsCards as s}
-		{@render settingsCard(s)}
+		<SettingsCard {...s} />
 	{/each}
+	<FactoryReset />
 </section>

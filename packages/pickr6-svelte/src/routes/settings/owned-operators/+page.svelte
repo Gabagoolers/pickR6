@@ -1,9 +1,7 @@
 <script lang="ts">
-	import type { Operator } from 'r6operators';
+	import { sanitizedOperators, type ReducedSanitizedOperator } from '$lib/utils/operators';
 
-	import { sanitizedOperators } from '$lib/utils/operators';
-
-	import { pickr6Store } from '$lib/stores/persisted.svelte';
+	import { getPickr6Store } from '$lib/stores/persisted.svelte';
 	import { Switch } from '$lib/components/ui/switch';
 	import { Label } from '$lib/components/ui/dropdown-menu';
 	import OperatorCard from '$lib/components/OperatorCard.svelte';
@@ -11,10 +9,11 @@
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
+	import { ArrowLeft } from '@lucide/svelte';
 
-	let store = pickr6Store;
+	let store = getPickr6Store();
 
-	type OperatorWithOwnership = Operator & {
+	type OperatorWithOwnership = ReducedSanitizedOperator & {
 		isOwned: boolean;
 	};
 
@@ -35,20 +34,12 @@
 	const onlyShowOwned = $state({ current: false });
 
 	function toggleOperatorOwned(operatorId: string) {
-		console.log('clicked');
 		function add() {
-			const n = [...store.value.ownedOperators, operatorId];
-			store.value = {
-				...store.value,
-				ownedOperators: n
-			};
+			store.value.ownedOperators.push(operatorId);
 		}
 
 		function remove() {
-			store.value = {
-				...store.value,
-				ownedOperators: store.value.ownedOperators.filter((o) => o !== operatorId)
-			};
+			store.value.ownedOperators = store.value.ownedOperators.filter((o) => o !== operatorId);
 		}
 
 		if (!sanitizedOperators.find((o) => o.id === operatorId)) {
@@ -65,18 +56,24 @@
 	}
 
 	function markAllOwned() {
-		store.value = {
-			...store.value,
-			ownedOperators: sanitizedOperators.map((o) => o.id)
-		};
+		store.value.ownedOperators = sanitizedOperators.map((o) => o.id);
 	}
 
 	$inspect(store);
+
+	let open = $state(false);
 </script>
 
 <svelte:head>
 	<title>Owned Operators</title>
 </svelte:head>
+
+<header class="flex flex-row justify-between">
+	<Button class="pl-0" variant="ghost" href="/settings">
+		<ArrowLeft />
+		Settings</Button
+	>
+</header>
 
 <h1>Owned Operators</h1>
 
@@ -100,7 +97,7 @@
 
 <section class="flex flex-col gap-4 rounded-lg">
 	<div class="flex flex-row justify-between">
-		<AlertDialog.Root>
+		<AlertDialog.Root bind:open>
 			<AlertDialog.Trigger>
 				<Button variant="outline">Mark all owned</Button>
 			</AlertDialog.Trigger>
@@ -112,10 +109,17 @@
 						own.
 					</AlertDialog.Description>
 				</AlertDialog.Header>
-				<AlertDialog.Footer>
-					<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
-					<AlertDialog.Action onclick={() => markAllOwned()}>Continue</AlertDialog.Action>
-				</AlertDialog.Footer>
+				<form
+					onsubmit={() => {
+						markAllOwned();
+						open = false;
+					}}
+				>
+					<AlertDialog.Footer>
+						<AlertDialog.Cancel type="button">Cancel</AlertDialog.Cancel>
+						<AlertDialog.Action type="submit">Continue</AlertDialog.Action>
+					</AlertDialog.Footer>
+				</form>
 			</AlertDialog.Content>
 		</AlertDialog.Root>
 		<div class="flex items-center space-x-2">
