@@ -48,12 +48,10 @@
 		pickr6Store.value.options.side = selected;
 	});
 
-	$inspect(pickr6Store);
-
 	let open = $state(false);
 </script>
 
-<div class="flex size-full grow flex-col justify-between">
+<div class="flex h-full flex-grow flex-col pb-4">
 	<header class="flex flex-row justify-end">
 		<Drawer.Root bind:open>
 			<Drawer.Trigger class={buttonVariants({ variant: 'ghost', size: 'icon' })}>
@@ -95,7 +93,7 @@
 		</Drawer.Root>
 	</header>
 
-	<div class="h-full grow">
+	<div class="flex h-full grow flex-col justify-between">
 		{#if randomOperator}
 			<div class="flex flex-col items-center justify-center gap-4">
 				<figure class="size-full">
@@ -106,15 +104,17 @@
 		{/if}
 
 		{#if !pickr6Store.value.ownedOperators.length}
-			<h2 class="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-				You don't have any operators.
-			</h2>
-			<p>
-				Head over to the <a
-					class="text-primary font-medium underline underline-offset-4"
-					href="/settings/owned-operators">Owned Operators</a
-				> page to set which operators you own.
-			</p>
+			<section>
+				<h2 class="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+					You don't have any operators.
+				</h2>
+				<p>
+					Head over to the <a
+						class="text-primary font-medium underline underline-offset-4"
+						href="/settings/owned-operators">Owned Operators</a
+					> page to set which operators you own.
+				</p>
+			</section>
 		{:else}
 			<Button class="w-full" onclick={() => spinNew()}>Spin</Button>
 		{/if}

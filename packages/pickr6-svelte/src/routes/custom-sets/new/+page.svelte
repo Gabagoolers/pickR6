@@ -16,6 +16,7 @@
 	import SuperDebug from 'sveltekit-superforms';
 	import { goto } from '$app/navigation';
 	import { dev } from '$app/environment';
+	import Fab from '$lib/components/FAB.svelte';
 
 	const pickr6Store = getPickr6Store();
 
@@ -113,12 +114,13 @@
 		</div>
 	</section>
 
-	<div class="fixed bottom-20 right-6 shadow-lg">
-		<Button type="submit">
-			<Save class="mr-2 size-4" />
-			Save new set</Button
-		>
-	</div>
+	<Fab
+		label="Save new set"
+		icon={Save}
+		buttonProps={{
+			type: 'submit'
+		}}
+	/>
 </form>
 
 {#if dev}
