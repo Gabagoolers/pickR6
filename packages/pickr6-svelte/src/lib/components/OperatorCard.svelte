@@ -8,7 +8,7 @@
 	const { operator }: Props = $props();
 </script>
 
-<div>
+<div class="flex flex-col items-center justify-between">
 	{@html operator.toSVG()}
 	<span>{operator.name}</span>
 </div>
