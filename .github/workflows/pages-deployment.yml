@@ -1,0 +1,34 @@
+name: "Cloudflare Pages Deployment"
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Build
+        run: bun run build
+        working-directory: packages/pickr6-svelte
+
+      - name: Deploy to Cloudflare Pages with Wrangler
+        uses: cloudflare/wrangler-action@v3
+        working-directory: packages/pickr6-svelte
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy build --project-name=pickr6
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
