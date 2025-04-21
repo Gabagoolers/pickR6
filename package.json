@@ -1,6 +1,6 @@
 {
   "name": "pickr6",
-  "private": "true",
+  "private": "false",
   "workspaces": [
     "packages/*"
   ],
