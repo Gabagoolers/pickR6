@@ -1,7 +1,6 @@
 <script lang="ts">
 	import * as Form from '$lib/components/ui/form/index.js';
 
-	import Button from '$lib/components/ui/button/button.svelte';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label/';
 	import { sanitizedOperators, type ReducedSanitizedOperator } from '$lib/utils/operators';
@@ -73,7 +72,7 @@
 		}
 	});
 
-	const { form: formData, enhance, constraints, errors } = form;
+	const { form: formData, enhance } = form;
 </script>
 
 <svelte:head>
@@ -85,6 +84,7 @@
 	<div tabindex="0" role="button" onclick={() => toggle(operator.id)}>
 		<div class="flex flex-col items-center justify-center">
 			<figure class:saturate-0={!operator.selected} class="size-full">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html operator.toSVG()}
 			</figure>
 			<span class:font-bold={operator.selected} class="text-center">{operator.name}</span>

@@ -27,7 +27,7 @@
 	const curr = $derived(page.url.pathname);
 </script>
 
-<nav class="bg-background grid grid-cols-3">
+<nav class="grid grid-cols-3 bg-background">
 	{#each routes as { href, label, icon }}
 		{@const Icon = icon}
 		<a class:active={curr === href} {href}>
