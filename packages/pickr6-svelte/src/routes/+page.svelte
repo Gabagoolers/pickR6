@@ -69,7 +69,7 @@
 					</div>
 					<div class="flex items-center justify-between space-x-2">
 						<Label for="hide-starter"
-							>Hide starter operators <span class="text-muted-foreground truncate text-xs">
+							>Hide starter operators <span class="truncate text-xs text-muted-foreground">
 								Recruit, Striker, Sentry
 							</span></Label
 						>
@@ -110,7 +110,7 @@
 				</h2>
 				<p>
 					Head over to the <a
-						class="text-primary font-medium underline underline-offset-4"
+						class="font-medium text-primary underline underline-offset-4"
 						href="/settings/owned-operators">Owned Operators</a
 					> page to set which operators you own.
 				</p>
