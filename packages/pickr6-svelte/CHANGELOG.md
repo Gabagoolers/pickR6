@@ -1,5 +1,11 @@
 # pickr6-svelte
 
+## 0.2.4
+
+### Patch Changes
+
+- 77dc748: Show version on settings page
+
 ## 0.2.3
 
 ### Patch Changes
