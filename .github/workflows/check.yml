@@ -7,12 +7,31 @@ on:
   pull_request:
 
 jobs:
-  check-and-lint:
+  changes:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      frontend: ${{ steps.filter.outputs.frontend }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            frontend:
+              - 'packages/pickr6-svelte/**'
+
+  check-and-lint:
+    needs: changes
+    runs-on: ubuntu-latest
+    if: ${{ needs.changes.outputs.frontend == 'true' }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Bun
         uses: oven-sh/setup-bun@v2
