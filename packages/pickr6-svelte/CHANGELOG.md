@@ -1,5 +1,11 @@
 # pickr6-svelte
 
+## 0.2.2
+
+### Patch Changes
+
+- e109aa1: add wrangler for deployment
+
 ## 0.2.1
 
 ### Patch Changes
