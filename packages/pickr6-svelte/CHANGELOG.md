@@ -1,5 +1,12 @@
 # pickr6-svelte
 
+## 0.3.0
+
+### Minor Changes
+
+- 374820f: Fix deployment to target prod
+- 28f8c98: Fix feature to filter by side and starter operators
+
 ## 0.2.4
 
 ### Patch Changes
