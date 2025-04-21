@@ -8,6 +8,12 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+
+	declare const PKG: {
+		version: string;
+		homepage?: string;
+		[key: string]: unknown;
+	};
 }
 
 export {};

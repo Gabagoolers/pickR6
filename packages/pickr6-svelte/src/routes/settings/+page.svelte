@@ -26,18 +26,29 @@
 	<title>Settings</title>
 </svelte:head>
 
-<header class="flex flex-row justify-between">
-	<Button class="pl-0" variant="ghost" href="/">
-		<ArrowLeft />
-		Spin</Button
-	>
-</header>
+<div class="flex h-full flex-grow flex-col justify-between">
+	<div>
+		<header class="flex flex-row justify-between">
+			<Button class="pl-0" variant="ghost" href="/">
+				<ArrowLeft />
+				Spin</Button
+			>
+		</header>
 
-<h1>Settings</h1>
+		<h1>Settings</h1>
 
-<section class="grid grid-cols-2 gap-4">
-	{#each settingsCards as s}
-		<SettingsCard {...s} />
-	{/each}
-	<FactoryReset />
-</section>
+		<section class="grid grid-cols-2 gap-4">
+			{#each settingsCards as s}
+				<SettingsCard {...s} />
+			{/each}
+			<FactoryReset />
+		</section>
+	</div>
+
+	<footer class="flex flex-row items-center justify-center">
+		<p class="text-sm text-muted-foreground">
+			<a href={PKG.homepage} target="_blank">pickR6</a>
+			<a href={`${PKG.homepage}/releases`} target="_blank">v{PKG.version}</a>
+		</p>
+	</footer>
+</div>
