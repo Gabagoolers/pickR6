@@ -1,5 +1,11 @@
 # pickr6-svelte
 
+## 0.1.2
+
+### Patch Changes
+
+- 7a85b37: Fix tag generation by making packages non private
+
 ## 0.1.1
 
 ### Patch Changes
