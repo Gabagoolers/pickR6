@@ -1,5 +1,12 @@
 # pickr6-svelte
 
+## 0.2.0
+
+### Minor Changes
+
+- 697da91: Setup CI for linting and building the app
+- 8d8c7a5: Setup deployment triggered on GH release
+
 ## 0.1.2
 
 ### Patch Changes
