@@ -9,6 +9,7 @@
 </script>
 
 <div class="flex flex-col items-center justify-between">
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html operator.toSVG()}
 	<span>{operator.name}</span>
 </div>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import OperatorSetCard from '$lib/components/OperatorSetCard.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { getPickr6Store } from '$lib/stores/persisted.svelte';
 	import { ArrowLeft, Plus } from '@lucide/svelte';

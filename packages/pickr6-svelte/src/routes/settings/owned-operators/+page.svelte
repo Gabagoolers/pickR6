@@ -4,7 +4,6 @@
 	import { getPickr6Store } from '$lib/stores/persisted.svelte';
 	import { Switch } from '$lib/components/ui/switch';
 	import { Label } from '$lib/components/ui/dropdown-menu';
-	import OperatorCard from '$lib/components/OperatorCard.svelte';
 	import Checkbox from '$lib/components/ui/checkbox/checkbox.svelte';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
@@ -82,6 +81,7 @@
 		<div class="items-centerjustify-between flex flex-row items-center">
 			<div class="flex w-full flex-row items-center gap-4">
 				<figure class="size-16">
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html operator.toSVG()}
 				</figure>
 				<h2 class="text-xl">{operator.name}</h2>

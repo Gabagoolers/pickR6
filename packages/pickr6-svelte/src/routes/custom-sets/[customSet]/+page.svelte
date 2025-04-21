@@ -2,7 +2,6 @@
 	import { page } from '$app/state';
 	import OperatorCard from '$lib/components/OperatorCard.svelte';
 	import { Button } from '$lib/components/ui/button';
-	import Label from '$lib/components/ui/label/label.svelte';
 	import { getPickr6Store } from '$lib/stores/persisted.svelte';
 	import { sanitizedOperators } from '$lib/utils/operators';
 	import { ArrowLeft } from '@lucide/svelte';

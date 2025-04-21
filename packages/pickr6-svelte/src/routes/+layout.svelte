@@ -1,6 +1,5 @@
 <script lang="ts">
 	import BottomNavbar from '$lib/components/feautres/layout/BottomNavbar.svelte';
-	import ModeSwitcher from '$lib/components/ModeSwitcher.svelte';
 	import '../app.css';
 	let { children } = $props();
 </script>
