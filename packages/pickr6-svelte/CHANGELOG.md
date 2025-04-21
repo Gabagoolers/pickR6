@@ -1,5 +1,11 @@
 # pickr6-svelte
 
+## 0.2.1
+
+### Patch Changes
+
+- 4aec1ee: Fix deployment syntax
+
 ## 0.2.0
 
 ### Minor Changes
