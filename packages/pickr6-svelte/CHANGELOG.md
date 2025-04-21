@@ -1,5 +1,11 @@
 # pickr6-svelte
 
+## 0.1.1
+
+### Patch Changes
+
+- 9abbfba: Fix GH release
+
 ## 0.1.0
 
 ### Minor Changes
