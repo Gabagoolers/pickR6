@@ -1,5 +1,14 @@
 # pickr6-svelte
 
+## 0.2.3
+
+### Patch Changes
+
+- 1cd0576: Use build folder from config
+- 1cd0576: Update setup-node version
+- 1cd0576: Filter when to run sveltekit checks
+- 1cd0576: add wrangler for deployment
+
 ## 0.2.2
 
 ### Patch Changes
