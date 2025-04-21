@@ -73,7 +73,7 @@
 			</div>
 			<div class="flex items-center justify-between space-x-2">
 				<Label for="hide-starter"
-					>Hide starter operators <span class="text-muted-foreground truncate text-xs">
+					>Hide starter operators <span class="truncate text-xs text-muted-foreground">
 						Recruit, Striker, Sentry
 					</span></Label
 				>
@@ -93,7 +93,7 @@
 {/snippet}
 
 {#snippet ownedOperatorsLink()}
-	<a class="text-primary font-medium underline underline-offset-4" href="/settings/owned-operators"
+	<a class="font-medium text-primary underline underline-offset-4" href="/settings/owned-operators"
 		>Owned Operators</a
 	>
 {/snippet}
@@ -137,11 +137,11 @@
 						{@html randomOperator.toSVG()}
 					{:else}
 						<div class="aspect-square p-16">
-							<div class="bg-muted rounded-sm">
+							<div class="rounded-sm bg-muted">
 								<FileQuestion class="size-full p-4" />
 							</div>
 						</div>
-						<p class="text-muted-foreground text-center">
+						<p class="text-center text-muted-foreground">
 							Click on the Spin button to get your first operator!
 						</p>
 					{/if}
