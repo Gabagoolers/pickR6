@@ -28,3 +28,7 @@ jobs:
       - name: Run Lint
         run: bun run lint
         working-directory: packages/pickr6-svelte
+
+      - name: Build
+        run: bun run build
+        working-directory: packages/pickr6-svelte
