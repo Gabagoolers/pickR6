@@ -5,7 +5,6 @@
 	import { z } from 'zod';
 
 	import { Label } from '$lib/components/ui/label';
-	import TabsInput from './TabsInput.svelte';
 	import * as Form from '$lib/components/ui/form';
 	import Switch from '$lib/components/ui/switch/switch.svelte';
 	import { dev } from '$app/environment';
@@ -17,13 +16,13 @@
 	import { cn } from '$lib/utils';
 	import { tick } from 'svelte';
 	import { fade, slide } from 'svelte/transition';
+	import TabsInputField from './TabsInputField.svelte';
+	import TabsInput from './TabsInput.svelte';
 
 	const pickr6Store = getPickr6Store();
 
-	const sideOptions = ['attacker', 'defender'] as const;
-
 	const filterSchema = z.object({
-		side: z.union([z.literal('attacker'), z.literal('defender')]).default('defender'),
+		side: z.string().default('defender'),
 		hideStarter: z.boolean(),
 		useCustomSet: z.boolean(),
 		customSet: z.string().nullable()
@@ -34,13 +33,12 @@
 		validators: zod(filterSchema),
 		async onUpdate({ form }) {
 			if (form.valid) {
+				console.log('Form is valid:', form.data);
 			}
 		}
 	});
 
 	const { form: formData, enhance } = form;
-
-	const sideFormProxy = fieldProxy(form, 'side');
 
 	let customSetPopoverOpen = $state(false);
 	let customSetValue = $state('');
@@ -56,7 +54,7 @@
 		});
 	}
 
-	$inspect($formData);
+	const sideOptions = ['defender', 'attacker'];
 </script>
 
 {#snippet customSetSelector()}
@@ -109,14 +107,9 @@
 		<div class="grid grid-cols-1 gap-4 p-4 pb-0 lg:grid-cols-2">
 			<Form.Field {form} name="side" class="flex items-center justify-between space-x-2">
 				<Form.Control>
-					{#snippet children({ props })}
+					{#snippet children()}
 						<Form.Label>Operator side</Form.Label>
-						<TabsInput
-							{...props}
-							proxy={sideFormProxy}
-							options={sideOptions}
-							bind:selected={$formData.side}
-						/>
+						<TabsInputField {form} options={sideOptions} />
 					{/snippet}
 				</Form.Control>
 			</Form.Field>

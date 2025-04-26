@@ -1,18 +1,12 @@
 <script lang="ts">
-	import { Tabs } from 'bits-ui';
-	import type { FsSuperForm } from 'formsnap';
-	import type { ChangeEventHandler, FormEventHandler } from 'svelte/elements';
-	import type { FieldProxy } from 'sveltekit-superforms';
+	import { superForm, fieldProxy } from 'sveltekit-superforms/client';
 
-	interface TabsInputProps {
-		selected: string;
-		options: readonly string[];
-	}
+	let { form, options } = $props();
 
-	let { selected = $bindable(), options }: TabsInputProps = $props();
+	const side = fieldProxy(form, 'side');
 
 	function tabOnClick(option: string) {
-		selected = option;
+		$side = option;
 	}
 </script>
 
@@ -23,7 +17,7 @@
 		<button
 			type="button"
 			onclick={() => tabOnClick(o)}
-			data-state={selected === o ? 'active' : undefined}
+			data-state={$side === o ? 'active' : undefined}
 			class="ring-offset-background focus-visible:ring-ring data-[state=active]:bg-background data-[state=active]:text-foreground inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm"
 		>
 			{o}
