@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
+	import * as Command from '$lib/components/ui/command';
+	import * as Popover from '$lib/components/ui/popover';
 
 	import ListFilter from '@lucide/svelte/icons/list-filter';
 
@@ -12,7 +14,16 @@
 	import { Switch } from '$lib/components/ui/switch';
 	import TabsInput from '$lib/components/feautres/spin/TabsInput.svelte';
 	import { pickableOperatorPool } from '$lib/utils/randomPick';
-	import { FileQuestion } from '@lucide/svelte';
+	import { Check, ChevronsUpDown, FileQuestion } from '@lucide/svelte';
+	import { tick } from 'svelte';
+	import { cn } from '$lib/utils';
+	import SuperDebug, { defaults, superForm } from 'sveltekit-superforms';
+	import { z } from 'zod';
+	import { zod } from 'sveltekit-superforms/adapters';
+	import { dev } from '$app/environment';
+
+	import * as Form from '$lib/components/ui/form';
+	import DrawerContent from '$lib/components/feautres/spin/DrawerContent.svelte';
 
 	const pickr6Store = getPickr6Store();
 	const spinnedStore = getSpinnedStore();
@@ -60,40 +71,8 @@
 	);
 </script>
 
-{#snippet drawerContent()}
-	<Drawer.Content>
-		<Drawer.Header>
-			<Drawer.Title>Mode settings</Drawer.Title>
-			<Drawer.Description>Change how the app shuffles your operators</Drawer.Description>
-		</Drawer.Header>
-		<div class="grid grid-cols-1 gap-4 p-4 pb-0 lg:grid-cols-2">
-			<div class="flex items-center justify-between space-x-2">
-				<Label>Operator side</Label>
-				<TabsInput bind:selected {options} />
-			</div>
-			<div class="flex items-center justify-between space-x-2">
-				<Label for="hide-starter"
-					>Hide starter operators <span class="truncate text-xs text-muted-foreground">
-						Recruit, Striker, Sentry
-					</span></Label
-				>
-				<Switch id="hide-starter" bind:checked={pickr6Store.value.options.hideRecruit} />
-			</div>
-		</div>
-		<form
-			onsubmit={() => {
-				open = false;
-			}}
-		>
-			<Drawer.Footer>
-				<Button type="submit">Close</Button>
-			</Drawer.Footer>
-		</form>
-	</Drawer.Content>
-{/snippet}
-
 {#snippet ownedOperatorsLink()}
-	<a class="font-medium text-primary underline underline-offset-4" href="/settings/owned-operators"
+	<a class="text-primary font-medium underline underline-offset-4" href="/settings/owned-operators"
 		>Owned Operators</a
 	>
 {/snippet}
@@ -104,7 +83,7 @@
 			<Drawer.Trigger class={buttonVariants({ variant: 'ghost', size: 'icon' })}>
 				<ListFilter />
 			</Drawer.Trigger>
-			{@render drawerContent()}
+			<DrawerContent />
 		</Drawer.Root>
 	</header>
 
@@ -137,11 +116,11 @@
 						{@html randomOperator.toSVG()}
 					{:else}
 						<div class="aspect-square p-16">
-							<div class="rounded-sm bg-muted">
+							<div class="bg-muted rounded-sm">
 								<FileQuestion class="size-full p-4" />
 							</div>
 						</div>
-						<p class="text-center text-muted-foreground">
+						<p class="text-muted-foreground text-center">
 							Click on the Spin button to get your first operator!
 						</p>
 					{/if}
