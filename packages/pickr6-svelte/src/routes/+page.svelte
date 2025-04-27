@@ -83,7 +83,7 @@
 			<Drawer.Trigger class={buttonVariants({ variant: 'ghost', size: 'icon' })}>
 				<ListFilter />
 			</Drawer.Trigger>
-			<DrawerContent />
+			<DrawerContent bind:open />
 		</Drawer.Root>
 	</header>
 
