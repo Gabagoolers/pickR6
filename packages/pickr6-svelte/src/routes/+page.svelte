@@ -52,7 +52,6 @@
 	}
 
 	let selected = $state<OperatorSide>(pickr6Store.value.options.side);
-	const options: OperatorSide[] = ['attacker', 'defender'] as const;
 
 	$effect(() => {
 		pickr6Store.value.options.side = selected;
@@ -66,7 +65,7 @@
 </script>
 
 {#snippet ownedOperatorsLink()}
-	<a class="font-medium text-primary underline underline-offset-4" href="/settings/owned-operators"
+	<a class="text-primary font-medium underline underline-offset-4" href="/settings/owned-operators"
 		>Owned Operators</a
 	>
 {/snippet}
@@ -110,11 +109,11 @@
 						{@html randomOperator.toSVG()}
 					{:else}
 						<div class="aspect-square p-16">
-							<div class="rounded-sm bg-muted">
+							<div class="bg-muted rounded-sm">
 								<FileQuestion class="size-full p-4" />
 							</div>
 						</div>
-						<p class="text-center text-muted-foreground">
+						<p class="text-muted-foreground text-center">
 							Click on the Spin button to get your first operator!
 						</p>
 					{/if}
