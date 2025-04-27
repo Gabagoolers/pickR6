@@ -1,13 +1,12 @@
 <script lang="ts">
 	import * as Drawer from '$lib/components/ui/drawer';
-	import SuperDebug, { defaults, fileProxy, superForm } from 'sveltekit-superforms';
+	import { defaults, superForm } from 'sveltekit-superforms';
 	import { zod } from 'sveltekit-superforms/adapters';
 	import { z } from 'zod';
 
 	import { Label } from '$lib/components/ui/label';
 	import * as Form from '$lib/components/ui/form';
 	import Switch from '$lib/components/ui/switch/switch.svelte';
-	import { dev } from '$app/environment';
 	import { Button, buttonVariants } from '$lib/components/ui/button';
 	import { Check, ChevronsUpDown } from '@lucide/svelte';
 	import * as Popover from '$lib/components/ui/popover';

@@ -1,9 +1,4 @@
 <script lang="ts">
-	import { Tabs } from 'bits-ui';
-	import type { FsSuperForm } from 'formsnap';
-	import type { ChangeEventHandler, FormEventHandler } from 'svelte/elements';
-	import type { FieldProxy } from 'sveltekit-superforms';
-
 	interface TabsInputProps {
 		selected: string;
 		options: readonly string[];

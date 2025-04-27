@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { superForm, fieldProxy } from 'sveltekit-superforms/client';
+	import { fieldProxy } from 'sveltekit-superforms/client';
 
 	let { form, options } = $props();
 

@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
-	import * as Command from '$lib/components/ui/command';
-	import * as Popover from '$lib/components/ui/popover';
 
 	import ListFilter from '@lucide/svelte/icons/list-filter';
 
@@ -10,19 +8,9 @@
 
 	import * as Drawer from '$lib/components/ui/drawer';
 	import { buttonVariants } from '$lib/components/ui/button';
-	import { Label } from '$lib/components/ui/label';
-	import { Switch } from '$lib/components/ui/switch';
-	import TabsInput from '$lib/components/feautres/spin/TabsInput.svelte';
 	import { pickableOperatorPool } from '$lib/utils/randomPick';
-	import { Check, ChevronsUpDown, FileQuestion } from '@lucide/svelte';
-	import { tick } from 'svelte';
-	import { cn } from '$lib/utils';
-	import SuperDebug, { defaults, superForm } from 'sveltekit-superforms';
-	import { z } from 'zod';
-	import { zod } from 'sveltekit-superforms/adapters';
-	import { dev } from '$app/environment';
+	import { FileQuestion } from '@lucide/svelte';
 
-	import * as Form from '$lib/components/ui/form';
 	import DrawerContent from '$lib/components/feautres/spin/DrawerContent.svelte';
 
 	const pickr6Store = getPickr6Store();
