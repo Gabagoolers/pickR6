@@ -51,3 +51,23 @@ jobs:
       - name: Build
         run: bun run build
         working-directory: packages/pickr6-svelte
+
+  unit-test:
+    needs: changes
+    runs-on: ubuntu-latest
+    if: ${{ needs.changes.outputs.frontend == 'true' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install
+        working-directory: packages/pickr6-svelte
+
+      - name: Run Unit Tests
+        run: bun test
+        working-directory: packages/pickr6-svelte
