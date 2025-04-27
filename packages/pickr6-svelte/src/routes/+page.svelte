@@ -34,8 +34,14 @@
 		const ownedSanitizedOperators = sanitizedOperators.filter((e) =>
 			pickr6Store.value.ownedOperators.includes(e.id)
 		);
+
+		const customSet = pickr6Store.value.sets.find(
+			(e) => e.id === spinnedStore.value.selectedCustomSetId
+		);
+
 		return pickableOperatorPool(ownedSanitizedOperators, pickr6Store.value.options.side, {
-			hideStarter: pickr6Store.value.options.hideRecruit
+			hideStarter: pickr6Store.value.options.hideRecruit,
+			customSet: customSet?.operators ?? undefined
 		});
 	});
 

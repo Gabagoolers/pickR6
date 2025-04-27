@@ -20,6 +20,7 @@ export function pickableOperatorPool<T extends ReducedSanitizedOperator>(
 	options?: PickableOperatorPoolOptions
 ): Array<T> {
 	return operators
+		.filter((e) => (options?.customSet ? options.customSet.includes(e.id) : true))
 		.filter((e) => {
 			const isStarter = isStarterOpFunc(e);
 			return (options?.hideStarter ?? true) ? !isStarter : true;
