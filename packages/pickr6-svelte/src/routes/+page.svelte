@@ -8,11 +8,10 @@
 
 	import * as Drawer from '$lib/components/ui/drawer';
 	import { buttonVariants } from '$lib/components/ui/button';
-	import { Label } from '$lib/components/ui/label';
-	import { Switch } from '$lib/components/ui/switch';
-	import TabsInput from '$lib/components/feautres/spin/TabsInput.svelte';
 	import { pickableOperatorPool } from '$lib/utils/randomPick';
 	import { FileQuestion } from '@lucide/svelte';
+
+	import DrawerContent from '$lib/components/feautres/spin/DrawerContent.svelte';
 
 	const pickr6Store = getPickr6Store();
 	const spinnedStore = getSpinnedStore();
@@ -23,8 +22,14 @@
 		const ownedSanitizedOperators = sanitizedOperators.filter((e) =>
 			pickr6Store.value.ownedOperators.includes(e.id)
 		);
+
+		const customSet = pickr6Store.value.sets.find(
+			(e) => e.id === spinnedStore.value.selectedCustomSetId
+		);
+
 		return pickableOperatorPool(ownedSanitizedOperators, pickr6Store.value.options.side, {
-			hideStarter: pickr6Store.value.options.hideRecruit
+			hideStarter: pickr6Store.value.options.hideRecruit,
+			customSet: customSet?.operators ?? undefined
 		});
 	});
 
@@ -47,7 +52,6 @@
 	}
 
 	let selected = $state<OperatorSide>(pickr6Store.value.options.side);
-	const options: OperatorSide[] = ['attacker', 'defender'] as const;
 
 	$effect(() => {
 		pickr6Store.value.options.side = selected;
@@ -59,38 +63,6 @@
 		pickr6Store.value.ownedOperators.length && availableOperatorList.length
 	);
 </script>
-
-{#snippet drawerContent()}
-	<Drawer.Content>
-		<Drawer.Header>
-			<Drawer.Title>Mode settings</Drawer.Title>
-			<Drawer.Description>Change how the app shuffles your operators</Drawer.Description>
-		</Drawer.Header>
-		<div class="grid grid-cols-1 gap-4 p-4 pb-0 lg:grid-cols-2">
-			<div class="flex items-center justify-between space-x-2">
-				<Label>Operator side</Label>
-				<TabsInput bind:selected {options} />
-			</div>
-			<div class="flex items-center justify-between space-x-2">
-				<Label for="hide-starter"
-					>Hide starter operators <span class="truncate text-xs text-muted-foreground">
-						Recruit, Striker, Sentry
-					</span></Label
-				>
-				<Switch id="hide-starter" bind:checked={pickr6Store.value.options.hideRecruit} />
-			</div>
-		</div>
-		<form
-			onsubmit={() => {
-				open = false;
-			}}
-		>
-			<Drawer.Footer>
-				<Button type="submit">Close</Button>
-			</Drawer.Footer>
-		</form>
-	</Drawer.Content>
-{/snippet}
 
 {#snippet ownedOperatorsLink()}
 	<a class="font-medium text-primary underline underline-offset-4" href="/settings/owned-operators"
@@ -104,7 +76,7 @@
 			<Drawer.Trigger class={buttonVariants({ variant: 'ghost', size: 'icon' })}>
 				<ListFilter />
 			</Drawer.Trigger>
-			{@render drawerContent()}
+			<DrawerContent bind:open />
 		</Drawer.Root>
 	</header>
 

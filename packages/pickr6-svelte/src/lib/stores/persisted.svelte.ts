@@ -99,13 +99,15 @@ export function getPickr6Store() {
 
 interface SpinnedStore {
 	spinnedOperatorId: string | null;
+	selectedCustomSetId: string | null;
 }
 
 export function getSpinnedStore() {
 	return localStore<SpinnedStore>(
 		'pickr6_spinned',
 		{
-			spinnedOperatorId: null
+			spinnedOperatorId: null,
+			selectedCustomSetId: null
 		},
 		sessionStorage
 	);
