@@ -43,7 +43,7 @@
 	</div>
 
 	<footer class="flex flex-row items-center justify-center">
-		<p class="text-muted-foreground text-sm">
+		<p class="text-sm text-muted-foreground">
 			<a href={PKG.homepage} target="_blank">pickR6</a>
 			<a href={`${PKG.homepage}/releases`} target="_blank">v{PKG.version}</a>
 		</p>
