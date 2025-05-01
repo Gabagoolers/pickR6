@@ -7,6 +7,7 @@
 	import FactoryReset from '$lib/components/feautres/settings/FactoryReset.svelte';
 	import { ArrowLeft } from '@lucide/svelte';
 	import { Button } from '$lib/components/ui/button';
+	import DarkModeSwitch from '$lib/components/feautres/settings/DarkModeSwitch.svelte';
 
 	const settingsCards: ComponentProps<typeof SettingsCard>[] = [
 		{
@@ -42,6 +43,7 @@
 				<SettingsCard {...s} />
 			{/each}
 			<FactoryReset />
+			<DarkModeSwitch />
 		</section>
 	</div>
 
