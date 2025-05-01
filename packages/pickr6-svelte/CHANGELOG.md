@@ -1,5 +1,13 @@
 # pickr6-svelte
 
+## 0.4.0
+
+### Minor Changes
+
+- 88b1f21: Add option to filter pick by a custom set
+- 6aa0e92: Setup Vitest and Playwright with tests of the filter logic
+- 3ccf69c: Migrate to different LocalStorage implementation
+
 ## 0.3.0
 
 ### Minor Changes
