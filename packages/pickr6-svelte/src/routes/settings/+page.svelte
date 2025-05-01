@@ -14,11 +14,6 @@
 			title: 'Owned Operators',
 			href: '/settings/owned-operators',
 			icon: Users
-		},
-		{
-			title: 'Custom Sets',
-			href: '/custom-sets',
-			icon: BookUser
 		}
 	];
 </script>
@@ -42,13 +37,13 @@
 			{#each settingsCards as s}
 				<SettingsCard {...s} />
 			{/each}
-			<FactoryReset />
 			<DarkModeSwitch />
+			<FactoryReset />
 		</section>
 	</div>
 
 	<footer class="flex flex-row items-center justify-center">
-		<p class="text-sm text-muted-foreground">
+		<p class="text-muted-foreground text-sm">
 			<a href={PKG.homepage} target="_blank">pickR6</a>
 			<a href={`${PKG.homepage}/releases`} target="_blank">v{PKG.version}</a>
 		</p>
