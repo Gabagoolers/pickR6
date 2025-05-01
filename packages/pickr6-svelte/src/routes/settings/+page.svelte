@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Users from '@lucide/svelte/icons/users';
-	import BookUser from '@lucide/svelte/icons/book-user';
 	import SettingsCard from '$lib/components/feautres/settings/SettingsCard.svelte';
 	import type { ComponentProps } from 'svelte';
 
