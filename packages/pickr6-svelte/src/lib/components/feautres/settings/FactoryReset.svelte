@@ -4,6 +4,7 @@
 
 	import { ListRestart } from '@lucide/svelte';
 	import type { SettingsCardRequiredProps } from './types';
+	import { appState } from '$lib/stores/storage.svelte';
 
 	const { title, icon }: SettingsCardRequiredProps = {
 		title: 'Factory Reset',
@@ -11,7 +12,7 @@
 	};
 
 	function resetStores() {
-		// TODO
+		appState.reset();
 	}
 
 	let open = $state(false);

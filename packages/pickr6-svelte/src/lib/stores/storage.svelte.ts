@@ -6,6 +6,7 @@ export class LocalStorage<T> {
 	#version = $state(0);
 	#listeners = 0;
 	#value: T | undefined;
+	readonly #initial: T | undefined;
 
 	#handler = (e: StorageEvent) => {
 		if (e.storageArea !== localStorage) return;
@@ -17,6 +18,7 @@ export class LocalStorage<T> {
 	constructor(key: string, initial?: T) {
 		this.#key = key;
 		this.#value = initial;
+		this.#initial = initial;
 
 		if (typeof localStorage !== 'undefined') {
 			if (localStorage.getItem(key) === null) {
@@ -93,6 +95,21 @@ export class LocalStorage<T> {
 			localStorage.setItem(this.#key, JSON.stringify(value));
 		}
 
+		this.#version += 1;
+	}
+
+	reset() {
+		if (typeof localStorage !== 'undefined') {
+			localStorage.removeItem(this.#key);
+		}
+
+		if (typeof localStorage !== 'undefined') {
+			if (localStorage.getItem(this.#key) === null) {
+				localStorage.setItem(this.#key, JSON.stringify(this.#initial));
+			}
+		}
+
+		this.#value = this.#initial;
 		this.#version += 1;
 	}
 }
