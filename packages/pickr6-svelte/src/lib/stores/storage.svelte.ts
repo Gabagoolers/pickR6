@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { tick } from 'svelte';
 import type { AppState } from './types';
 
@@ -32,7 +33,7 @@ export class LocalStorage<T> {
 
 		const root =
 			typeof localStorage !== 'undefined'
-				? JSON.parse(localStorage.getItem(this.#key) as any)
+				? JSON.parse(localStorage.getItem(this.#key) as string)
 				: this.#value;
 
 		const proxies = new WeakMap();
