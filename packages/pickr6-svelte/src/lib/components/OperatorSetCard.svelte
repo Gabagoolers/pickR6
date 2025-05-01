@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { OperatorSet } from '$lib/stores/persisted.svelte';
+	import type { OperatorSet } from '$lib/stores/types';
 
 	interface Props {
 		operatorSet: OperatorSet;
