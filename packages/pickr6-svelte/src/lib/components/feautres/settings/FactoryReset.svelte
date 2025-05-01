@@ -4,18 +4,14 @@
 
 	import { ListRestart } from '@lucide/svelte';
 	import type { SettingsCardRequiredProps } from './types';
-	import { getPickr6Store, getSpinnedStore } from '$lib/stores/persisted.svelte';
 
 	const { title, icon }: SettingsCardRequiredProps = {
 		title: 'Factory Reset',
 		icon: ListRestart
 	};
-	const store = getPickr6Store();
-	const sessionStore = getSpinnedStore();
 
 	function resetStores() {
-		store.reset();
-		sessionStore.reset();
+		// TODO
 	}
 
 	let open = $state(false);

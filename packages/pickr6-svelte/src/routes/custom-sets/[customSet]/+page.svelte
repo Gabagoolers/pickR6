@@ -2,12 +2,10 @@
 	import { page } from '$app/state';
 	import OperatorCard from '$lib/components/OperatorCard.svelte';
 	import { Button } from '$lib/components/ui/button';
-	import { getPickr6Store } from '$lib/stores/persisted.svelte';
+	import { appState } from '$lib/stores/storage.svelte';
 	import { sanitizedOperators } from '$lib/utils/operators';
 	import { ArrowLeft } from '@lucide/svelte';
 	import { error } from '@sveltejs/kit';
-
-	const pickr6Store = getPickr6Store();
 
 	const customSet = page.params.customSet;
 
@@ -15,7 +13,7 @@
 		throw error(400, 'Custom set parameter is required');
 	}
 
-	const selectedSet = pickr6Store.value.sets.find((set) => set.id === customSet);
+	const selectedSet = appState.current.sets.find((set) => set.id === customSet);
 
 	if (!selectedSet) {
 		throw error(404, `Custom set "${customSet}" not found`);

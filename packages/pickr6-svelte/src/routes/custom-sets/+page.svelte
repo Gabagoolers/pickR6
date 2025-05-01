@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { getPickr6Store } from '$lib/stores/persisted.svelte';
 	import { ArrowLeft, Plus } from '@lucide/svelte';
 	import * as Card from '$lib/components/ui/card';
 	import Fab from '$lib/components/FAB.svelte';
-
-	const pickr6Store = getPickr6Store();
+	import { appState } from '$lib/stores/storage.svelte';
 </script>
 
 <svelte:head>
@@ -22,7 +20,7 @@
 <h1>Custom sets</h1>
 
 <section class="grid gap-4">
-	{#each pickr6Store.value.sets ?? [] as set}
+	{#each appState.current.sets ?? [] as set}
 		<a href={`/custom-sets/${set.id}`}>
 			<Card.Root>
 				<Card.Header>

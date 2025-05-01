@@ -1,22 +1,5 @@
 import { browser } from '$app/environment';
-
-export type OperatorSide = 'attacker' | 'defender';
-
-export interface PickR6Store {
-	ownedOperators: Array<string>;
-	sets: Array<OperatorSet>;
-	options: {
-		hideRecruit: boolean;
-		side: OperatorSide;
-	};
-}
-
-export interface OperatorSet {
-	id: string;
-	name: string;
-	date: Date | string;
-	operators: string[];
-}
+import type { PickR6Store, SpinnedStore } from './types';
 
 interface JSONStructureLocalStore<T> {
 	store: T;
@@ -95,11 +78,6 @@ export function getPickr6Store() {
 			side: 'attacker'
 		}
 	});
-}
-
-interface SpinnedStore {
-	spinnedOperatorId: string | null;
-	selectedCustomSetId: string | null;
 }
 
 export function getSpinnedStore() {

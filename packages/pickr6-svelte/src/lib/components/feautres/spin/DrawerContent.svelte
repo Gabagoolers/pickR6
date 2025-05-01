@@ -11,17 +11,16 @@
 	import { Check, ChevronsUpDown } from '@lucide/svelte';
 	import * as Popover from '$lib/components/ui/popover';
 	import * as Command from '$lib/components/ui/command';
-	import { getPickr6Store, getSpinnedStore, type OperatorSide } from '$lib/stores/persisted.svelte';
+
 	import { cn } from '$lib/utils';
 	import { tick } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import TabsInputField from './TabsInputField.svelte';
 	import { useId } from 'bits-ui';
+	import { appState } from '$lib/stores/storage.svelte';
+	import type { OperatorSide } from '$lib/stores/types';
 
 	let { open = $bindable() } = $props();
-
-	const pickr6Store = getPickr6Store();
-	const spinnedStore = getSpinnedStore();
 
 	const filterSchema = z
 		.object({
@@ -41,10 +40,10 @@
 
 	const derivedData = $derived.by(() => {
 		return {
-			side: pickr6Store.value.options.side,
-			hideStarter: pickr6Store.value.options.hideRecruit,
-			useCustomSet: !!spinnedStore.value.selectedCustomSetId,
-			customSet: spinnedStore.value.selectedCustomSetId
+			side: appState.current.options.side,
+			hideStarter: appState.current.options.hideRecruit,
+			useCustomSet: !!appState.current.selected.selectedCustomSetId,
+			customSet: appState.current.selected.selectedCustomSetId
 		};
 	});
 
@@ -57,13 +56,13 @@
 					const { side, hideStarter, useCustomSet, customSet } = form.data;
 
 					if (useCustomSet) {
-						spinnedStore.value.selectedCustomSetId = customSet;
+						appState.current.selected.selectedCustomSetId = customSet;
 					} else {
-						spinnedStore.value.selectedCustomSetId = null;
+						appState.current.selected.selectedCustomSetId = null;
 					}
 
-					pickr6Store.value.options.hideRecruit = hideStarter;
-					pickr6Store.value.options.side = side as OperatorSide;
+					appState.current.options.hideRecruit = hideStarter;
+					appState.current.options.side = side as OperatorSide;
 
 					console.log('Form is valid:', form.data);
 					customSetPopoverOpen = false;
@@ -91,13 +90,13 @@
 						const { side, hideStarter, useCustomSet, customSet } = form.data;
 
 						if (useCustomSet) {
-							spinnedStore.value.selectedCustomSetId = customSet;
+							appState.current.selected.selectedCustomSetId = customSet;
 						} else {
-							spinnedStore.value.selectedCustomSetId = null;
+							appState.current.selected.selectedCustomSetId = null;
 						}
 
-						pickr6Store.value.options.hideRecruit = hideStarter;
-						pickr6Store.value.options.side = side as OperatorSide;
+						appState.current.options.hideRecruit = hideStarter;
+						appState.current.options.side = side as OperatorSide;
 
 						console.log('Form is valid:', form.data);
 						customSetPopoverOpen = false;
@@ -112,7 +111,7 @@
 
 	let customSetPopoverOpen = $state(false);
 	const selectedCustomSet = $derived(
-		pickr6Store.value.sets.find((e) => e.id === $formData.customSet)
+		appState.current.sets.find((e) => e.id === $formData.customSet)
 	);
 
 	function closeAndFocusTrigger() {
@@ -150,7 +149,7 @@
 				<Command.Root>
 					<Command.List>
 						<Command.Empty>Don't use custom set</Command.Empty>
-						{#each pickr6Store.value.sets as set}
+						{#each appState.current.sets as set}
 							<Command.Item
 								value={set.id}
 								onSelect={() => {
