@@ -3,7 +3,6 @@
 
 	import ListFilter from '@lucide/svelte/icons/list-filter';
 
-	import { getPickr6Store, getSpinnedStore, type OperatorSide } from '$lib/stores/persisted.svelte';
 	import { sanitizedOperators } from '$lib/utils/operators';
 
 	import * as Drawer from '$lib/components/ui/drawer';
@@ -13,22 +12,21 @@
 
 	import DrawerContent from '$lib/components/feautres/spin/DrawerContent.svelte';
 
-	const pickr6Store = getPickr6Store();
-	const spinnedStore = getSpinnedStore();
+	import { appState } from '$lib/stores/storage.svelte';
 
-	let randomOperatorId = $state<string | null>(spinnedStore.value.spinnedOperatorId);
+	let randomOperatorId = $state<string | null>(appState.current.selected.spinnedOperatorId);
 
 	const availableOperatorList = $derived.by(() => {
 		const ownedSanitizedOperators = sanitizedOperators.filter((e) =>
-			pickr6Store.value.ownedOperators.includes(e.id)
+			appState.current.ownedOperators.includes(e.id)
 		);
 
-		const customSet = pickr6Store.value.sets.find(
-			(e) => e.id === spinnedStore.value.selectedCustomSetId
+		const customSet = appState.current.sets.find(
+			(e) => e.id === appState.current.selected.selectedCustomSetId
 		);
 
-		return pickableOperatorPool(ownedSanitizedOperators, pickr6Store.value.options.side, {
-			hideStarter: pickr6Store.value.options.hideRecruit,
+		return pickableOperatorPool(ownedSanitizedOperators, appState.current.options.side, {
+			hideStarter: appState.current.options.hideRecruit,
 			customSet: customSet?.operators ?? undefined
 		});
 	});
@@ -48,19 +46,13 @@
 			console.error('Something went wrong while random picking an operator');
 			return;
 		}
-		spinnedStore.value.spinnedOperatorId = randomOperatorId;
+		appState.current.selected.spinnedOperatorId = randomOperatorId;
 	}
-
-	let selected = $state<OperatorSide>(pickr6Store.value.options.side);
-
-	$effect(() => {
-		pickr6Store.value.options.side = selected;
-	});
 
 	let open = $state(false);
 
 	const showButton = $derived(
-		pickr6Store.value.ownedOperators.length && availableOperatorList.length
+		appState.current.ownedOperators.length && availableOperatorList.length
 	);
 </script>
 
@@ -81,7 +73,7 @@
 	</header>
 
 	<div class="flex h-full grow flex-col justify-between">
-		{#if !pickr6Store.value.ownedOperators.length}
+		{#if !appState.current.ownedOperators.length}
 			<section>
 				<h2 class="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
 					You don't have any operators.
@@ -90,7 +82,7 @@
 			</section>
 		{/if}
 
-		{#if pickr6Store.value.ownedOperators.length && !availableOperatorList.length}
+		{#if appState.current.ownedOperators.length && !availableOperatorList.length}
 			<section>
 				<h2 class="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
 					There isn't an operator that would match your current filter

@@ -1,4 +1,4 @@
-import type { OperatorSide } from '$lib/stores/persisted.svelte';
+import type { OperatorSide } from '$lib/stores/types';
 import type { ReducedSanitizedOperator } from './operators';
 
 type PickableOperatorPoolOptions = {

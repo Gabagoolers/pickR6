@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { sanitizedOperators, type ReducedSanitizedOperator } from '$lib/utils/operators';
 
-	import { getPickr6Store } from '$lib/stores/persisted.svelte';
 	import { Switch } from '$lib/components/ui/switch';
 	import { Label } from '$lib/components/ui/dropdown-menu';
 	import Checkbox from '$lib/components/ui/checkbox/checkbox.svelte';
@@ -9,8 +8,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { ArrowLeft } from '@lucide/svelte';
-
-	let store = getPickr6Store();
+	import { appState } from '$lib/stores/storage.svelte';
 
 	type OperatorWithOwnership = ReducedSanitizedOperator & {
 		isOwned: boolean;
@@ -19,7 +17,7 @@
 	const ownedOperators: Array<OperatorWithOwnership> = $derived.by(() => {
 		return sanitizedOperators.map((o) => ({
 			...o,
-			isOwned: store.value.ownedOperators.includes(o.id)
+			isOwned: appState.current.ownedOperators.includes(o.id)
 		}));
 	});
 
@@ -34,18 +32,20 @@
 
 	function toggleOperatorOwned(operatorId: string) {
 		function add() {
-			store.value.ownedOperators.push(operatorId);
+			appState.current.ownedOperators.push(operatorId);
 		}
 
 		function remove() {
-			store.value.ownedOperators = store.value.ownedOperators.filter((o) => o !== operatorId);
+			appState.current.ownedOperators = appState.current.ownedOperators.filter(
+				(o) => o !== operatorId
+			);
 		}
 
 		if (!sanitizedOperators.find((o) => o.id === operatorId)) {
 			return;
 		}
 
-		const isOwned = store.value.ownedOperators.includes(operatorId);
+		const isOwned = appState.current.ownedOperators.includes(operatorId);
 
 		if (isOwned) {
 			remove();
@@ -55,10 +55,8 @@
 	}
 
 	function markAllOwned() {
-		store.value.ownedOperators = sanitizedOperators.map((o) => o.id);
+		appState.current.ownedOperators = sanitizedOperators.map((o) => o.id);
 	}
-
-	$inspect(store);
 
 	let open = $state(false);
 </script>

@@ -4,7 +4,6 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label/';
 	import { sanitizedOperators, type ReducedSanitizedOperator } from '$lib/utils/operators';
-	import { getPickr6Store, type OperatorSet } from '$lib/stores/persisted.svelte';
 
 	import Save from '@lucide/svelte/icons/save';
 
@@ -16,8 +15,8 @@
 	import { goto } from '$app/navigation';
 	import { dev } from '$app/environment';
 	import Fab from '$lib/components/FAB.svelte';
-
-	const pickr6Store = getPickr6Store();
+	import { appState } from '$lib/stores/storage.svelte';
+	import type { OperatorSet } from '$lib/stores/types';
 
 	type SelectableOperator = ReducedSanitizedOperator & {
 		selected: boolean;
@@ -48,7 +47,7 @@
 
 	function save(data: OperatorSet) {
 		const set = data;
-		pickr6Store.value.sets.push(set);
+		appState.current.sets.push(set);
 	}
 
 	const form = superForm(defaults(zod(setSchema)), {
