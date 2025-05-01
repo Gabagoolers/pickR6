@@ -13,8 +13,11 @@
 	import DrawerContent from '$lib/components/feautres/spin/DrawerContent.svelte';
 
 	import { appState } from '$lib/stores/storage.svelte';
+	import { fade } from 'svelte/transition';
 
 	let randomOperatorId = $state<string | null>(appState.current.selected.spinnedOperatorId);
+	// a way to retrigger animation when same operator is picked
+	let timestamp = $state<number | null>(null);
 
 	const availableOperatorList = $derived.by(() => {
 		const ownedSanitizedOperators = sanitizedOperators.filter((e) =>
@@ -46,6 +49,7 @@
 			console.error('Something went wrong while random picking an operator');
 			return;
 		}
+		timestamp = new Date().getTime();
 		appState.current.selected.spinnedOperatorId = randomOperatorId;
 	}
 
@@ -57,7 +61,7 @@
 </script>
 
 {#snippet ownedOperatorsLink()}
-	<a class="font-medium text-primary underline underline-offset-4" href="/settings/owned-operators"
+	<a class="text-primary font-medium underline underline-offset-4" href="/settings/owned-operators"
 		>Owned Operators</a
 	>
 {/snippet}
@@ -97,15 +101,19 @@
 			<div class="flex flex-col items-center justify-center gap-4">
 				<figure class="size-full">
 					{#if randomOperator}
-						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-						{@html randomOperator.toSVG()}
+						{#key timestamp}
+							<div in:fade={{ duration: 500 }}>
+								<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+								{@html randomOperator.toSVG()}
+							</div>
+						{/key}
 					{:else}
 						<div class="aspect-square p-16">
-							<div class="rounded-sm bg-muted">
+							<div class="bg-muted rounded-sm">
 								<FileQuestion class="size-full p-4" />
 							</div>
 						</div>
-						<p class="text-center text-muted-foreground">
+						<p class="text-muted-foreground text-center">
 							Click on the Spin button to get your first operator!
 						</p>
 					{/if}
