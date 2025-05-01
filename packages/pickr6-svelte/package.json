@@ -58,7 +58,7 @@
 		"zod": "^3.24.3"
 	},
 	"dependencies": {
-		"mode-watcher": "^0.5.1",
+		"mode-watcher": "0.2.2",
 		"r6operators": "^2.11.1",
 		"svelte-persisted-store": "^0.12.0"
 	}
