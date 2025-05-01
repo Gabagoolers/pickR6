@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Users from '@lucide/svelte/icons/users';
-	import BookUser from '@lucide/svelte/icons/book-user';
 	import SettingsCard from '$lib/components/feautres/settings/SettingsCard.svelte';
 	import type { ComponentProps } from 'svelte';
 
@@ -14,11 +13,6 @@
 			title: 'Owned Operators',
 			href: '/settings/owned-operators',
 			icon: Users
-		},
-		{
-			title: 'Custom Sets',
-			href: '/custom-sets',
-			icon: BookUser
 		}
 	];
 </script>
@@ -42,8 +36,8 @@
 			{#each settingsCards as s}
 				<SettingsCard {...s} />
 			{/each}
-			<FactoryReset />
 			<DarkModeSwitch />
+			<FactoryReset />
 		</section>
 	</div>
 
