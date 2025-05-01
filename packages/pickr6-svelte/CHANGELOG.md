@@ -1,5 +1,13 @@
 # pickr6-svelte
 
+## 0.4.1
+
+### Patch Changes
+
+- 01cfb47: Remove custom sets button from Settings
+- 4e51812: Basic transition on operator SVGs
+- a0dc166: Fix darkmode by downgrading mode-watcher
+
 ## 0.4.0
 
 ### Minor Changes
