@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	import { toggleMode, mode, resetMode } from 'mode-watcher';
+	import { toggleMode, mode } from 'mode-watcher';
 	import { Sun, Moon } from '@lucide/svelte';
 </script>
 
