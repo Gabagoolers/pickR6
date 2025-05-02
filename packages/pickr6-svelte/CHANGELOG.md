@@ -1,5 +1,15 @@
 # pickr6-svelte
 
+## 0.5.0
+
+### Minor Changes
+
+- 5ce4e33: Set proper meta tags for SEO
+
+### Patch Changes
+
+- 399f2f0: Patch dark mode switcher
+
 ## 0.4.1
 
 ### Patch Changes
