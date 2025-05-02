@@ -6,10 +6,6 @@
 	import { appState } from '$lib/stores/storage.svelte';
 </script>
 
-<svelte:head>
-	<title>Operator sets</title>
-</svelte:head>
-
 <header class="flex flex-row justify-between">
 	<Button class="pl-0" variant="ghost" href="/">
 		<ArrowLeft />

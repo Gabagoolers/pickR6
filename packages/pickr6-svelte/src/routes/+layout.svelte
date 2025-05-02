@@ -2,8 +2,17 @@
 	import BottomNavbar from '$lib/components/feautres/layout/BottomNavbar.svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.css';
-	let { children } = $props();
+	import { page } from '$app/state';
+	import { MetaTags, deepMerge } from 'svelte-meta-tags';
+
+	import { type ComponentProps } from 'svelte';
+
+	let { data, children } = $props();
+
+	let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags));
 </script>
+
+<MetaTags {...metaTags} />
 
 <ModeWatcher />
 <div class="flex min-h-dvh flex-col justify-between">

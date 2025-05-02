@@ -74,10 +74,6 @@
 	const { form: formData, enhance } = form;
 </script>
 
-<svelte:head>
-	<title>Create a set</title>
-</svelte:head>
-
 {#snippet selectableOperator(operator: SelectableOperator)}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div tabindex="0" role="button" onclick={() => toggle(operator.id)}>

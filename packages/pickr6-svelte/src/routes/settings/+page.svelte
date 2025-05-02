@@ -17,10 +17,6 @@
 	];
 </script>
 
-<svelte:head>
-	<title>Settings</title>
-</svelte:head>
-
 <div class="flex h-full flex-grow flex-col justify-between">
 	<div>
 		<header class="flex flex-row justify-between">
