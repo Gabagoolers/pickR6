@@ -5,8 +5,6 @@
 	import { page } from '$app/state';
 	import { MetaTags, deepMerge } from 'svelte-meta-tags';
 
-	import { type ComponentProps } from 'svelte';
-
 	let { data, children } = $props();
 
 	let metaTags = $derived(deepMerge(data.baseMetaTags, page.data.pageMetaTags));
