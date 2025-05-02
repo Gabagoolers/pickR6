@@ -1,27 +1,14 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import OperatorCard from '$lib/components/OperatorCard.svelte';
 	import { Button } from '$lib/components/ui/button';
-	import { appState } from '$lib/stores/storage.svelte';
 	import { sanitizedOperators } from '$lib/utils/operators';
 	import { ArrowLeft } from '@lucide/svelte';
-	import { error } from '@sveltejs/kit';
 
-	const customSet = page.params.customSet;
+	const { data } = $props();
 
-	if (!customSet) {
-		throw error(400, 'Custom set parameter is required');
-	}
+	const { id, date, name } = data.selectedSet;
 
-	const selectedSet = appState.current.sets.find((set) => set.id === customSet);
-
-	if (!selectedSet) {
-		throw error(404, `Custom set "${customSet}" not found`);
-	}
-
-	const { id, date, name } = selectedSet;
-
-	const mappedSelectedOperators = selectedSet?.operators
+	const mappedSelectedOperators = data.selectedSet?.operators
 		.map((op) => {
 			const operator = sanitizedOperators.find((o) => o.id === op);
 			return operator;

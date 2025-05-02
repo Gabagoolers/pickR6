@@ -61,10 +61,6 @@
 	let open = $state(false);
 </script>
 
-<svelte:head>
-	<title>Owned Operators</title>
-</svelte:head>
-
 <header class="flex flex-row justify-between">
 	<Button class="pl-0" variant="ghost" href="/settings">
 		<ArrowLeft />
