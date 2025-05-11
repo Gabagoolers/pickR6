@@ -3,6 +3,9 @@ name: "Cloudflare Pages Deployment"
 on:
   release:
     types: [published]
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -29,5 +32,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy --project-name=pickr6 --branch=main
+          command: >
+            pages deploy --project-name=pickr6 --branch=${{ github.event_name == 'release' && 'main' || 'preview' }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
