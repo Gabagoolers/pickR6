@@ -1,5 +1,11 @@
 # pickr6-svelte
 
+## 0.5.1
+
+### Patch Changes
+
+- 0671e19: fix stage deployment
+
 ## 0.5.0
 
 ### Minor Changes
