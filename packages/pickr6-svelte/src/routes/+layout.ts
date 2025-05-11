@@ -5,6 +5,7 @@ export const ssr = false;
 export const load = ({ url }) => {
 	const title = 'PickR6';
 	const description = 'A web app for random picking characters in a game called Rainbow Six Siege.';
+	const domain = `${url.protocol}//${url.host}`;
 
 	const baseMetaTags = Object.freeze({
 		title: 'Spin',
@@ -14,18 +15,18 @@ export const load = ({ url }) => {
 		openGraph: {
 			type: 'website',
 			url: new URL(url.pathname, url.origin).href,
-			locale: 'en_IE',
+			locale: 'en_US',
 			title,
 			description,
 			siteName: title,
 			images: [
 				{
-					url: 'https://www.example.ie/og-image.jpg',
+					url: `${domain}/og-image.png`,
 					alt: 'Og Image Alt',
-					width: 800,
+					width: 1200,
 					height: 600,
-					secureUrl: 'https://www.example.ie/og-image.jpg',
-					type: 'image/jpeg'
+					secureUrl: `${domain}/og-image.png`,
+					type: 'image/png'
 				}
 			]
 		}

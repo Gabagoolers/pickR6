@@ -1,5 +1,6 @@
 {
 	"name": "pickr6-svelte",
+	"description": "A web app for random picking characters in a game called Rainbow Six Siege",
 	"private": false,
 	"version": "0.4.1",
 	"type": "module",

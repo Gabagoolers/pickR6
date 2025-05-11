@@ -2,15 +2,16 @@ import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import { html as toReactNode } from 'satori-html';
 import { read } from '$app/server';
-import type { Component, ComponentProps } from 'svelte';
+import type { Component } from 'svelte';
 import { render } from 'svelte/server';
 
 import noto from '$lib/fonts/noto.ttf';
 const fontData = read(noto).arrayBuffer();
 
-export async function componentToPng(
-	component: Component,
-	props: ComponentProps<Component>,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function componentToPng<TComponentProps extends Record<string, any>>(
+	component: Component<TComponentProps>,
+	props: TComponentProps,
 	height: number,
 	width: number
 ) {

@@ -1,5 +1,6 @@
 <script lang="ts">
 	const version = PKG.version;
+	const description = PKG.description;
 </script>
 
 <div
@@ -10,31 +11,18 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-image: linear-gradient(to bottom, #dbf4ff, #fff1f1);
-  font-size: 60px;
+  font-size: 68px;
   letter-spacing: -2px;
-  font-weight: 700;
   text-align: center;
+  padding: 32px 64px;
+  color: #000;
 "
 >
-	<div
-		style="
-    background-image: linear-gradient(90deg, rgb(0, 124, 240), rgb(0, 223, 216));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  "
-	>
-		PickR6
+	<div style="display: flex;gap: 16px">
+		<div>PickR6</div>
+		<div>
+			v{version}
+		</div>
 	</div>
-	<div
-		style="
-    background-image: linear-gradient(90deg, rgb(121, 40, 202), rgb(255, 0, 128));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-  "
-	>
-		{version}
-	</div>
+	<div style="font-size: 32px;">{description}</div>
 </div>
