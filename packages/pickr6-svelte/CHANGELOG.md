@@ -1,5 +1,11 @@
 # pickr6-svelte
 
+## 0.6.0
+
+### Minor Changes
+
+- 046bd57: Bump r6operators version to 2.12.0
+
 ## 0.5.1
 
 ### Patch Changes
