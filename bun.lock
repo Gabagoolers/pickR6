@@ -10,10 +10,10 @@
     },
     "packages/pickr6-svelte": {
       "name": "pickr6-svelte",
-      "version": "0.4.1",
+      "version": "0.5.1",
       "dependencies": {
         "mode-watcher": "1.0.4",
-        "r6operators": "^2.11.1",
+        "r6operators": "^2.12.0",
         "svelte-persisted-store": "^0.12.0",
       },
       "devDependencies": {
@@ -1043,7 +1043,7 @@
 
     "queue-microtask": ["queue-microtask@1.2.3", "", {}, "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="],
 
-    "r6operators": ["r6operators@2.11.1", "", { "dependencies": { "clsx": "^2.0.0" } }, "sha512-HdUO2nGrmZk46xqshJ+PFssNmz93iZWVZP10f05EN65GkX549PAV9z9fvejQqPDVswJ65LmLHle5DQvGA9WkIg=="],
+    "r6operators": ["r6operators@2.12.0", "", { "dependencies": { "clsx": "^2.0.0" } }, "sha512-5vhbA2WyTjPCcdVNhyemgs6d4a7+Yzw9kLH3WVF/wjZ+D0k9V2wtdeU3sD0fl+R9lxMBKlmsZbMqBksesSw7dg=="],
 
     "react-is": ["react-is@17.0.2", "", {}, "sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w=="],
 
